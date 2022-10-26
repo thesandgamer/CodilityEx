@@ -7,15 +7,82 @@
 #include <bitset>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <functional>
+#include <string_view>
 
 using std::vector;
+using namespace  std;
 
+int partition(vector<int>& arr, int start, int end)
+{
+
+	int pivot = arr[start];
+
+	int count = 0;
+	for (int i = start + 1; i <= end; i++) {
+		if (arr[i] <= pivot)
+			count++;
+	}
+
+	// Giving pivot element its correct position
+	int pivotIndex = start + count;
+	swap(arr[pivotIndex], arr[start]);
+
+	// Sorting left and right parts of the pivot element
+	int i = start, j = end;
+
+	while (i < pivotIndex && j > pivotIndex) {
+
+		while (arr[i] <= pivot) {
+			i++;
+		}
+
+		while (arr[j] > pivot) {
+			j--;
+		}
+
+		if (i < pivotIndex && j > pivotIndex) {
+			swap(arr[i++], arr[j--]);
+		}
+	}
+
+	return pivotIndex;
+}
+
+void quickSort(vector<int>& arr, int start, int end)
+{
+
+	// base case
+	if (start >= end)
+		return;
+
+	// partitioning the array
+	int p = partition(arr, start, end);
+
+	// Sorting the left part
+	quickSort(arr, start, p - 1);
+
+	// Sorting the right part
+	quickSort(arr, p + 1, end);
+}
+
+
+
+
+
+std::string IntToBin(int value)
+{
+	return std::bitset<32>(value).to_string();
+}
+
+//Lesson 1 
 
 int DetectGap(std::string binaryValue)
 {
 	//std::bitset<8> binaryValue(32);
 
-	int gapValue {0};
+	int gapValue{ 0 };
 	bool checking = false;
 	int maxValue = 0;
 	//std::string val = binaryValue.to_string();
@@ -28,7 +95,7 @@ int DetectGap(std::string binaryValue)
 			{
 				checking = true;
 			}
-			
+
 		}
 		else
 		{
@@ -45,21 +112,16 @@ int DetectGap(std::string binaryValue)
 			{
 				gapValue++;
 			}
-			
-	
+
+
 		}
 	}
 	return maxValue;
 }
 
+//Lesson 2
 
-std::string IntToBin(int value)
-{
-	return std::bitset<32>(value).to_string();
-}
-
-
-void Shift(vector<int>& A, int K)
+void CirclicRotation(vector<int>& A, int K)
 {
 	//On doit déplacer A K fois
 	//if (K == 0) return A;
@@ -88,12 +150,86 @@ void Shift(vector<int>& A, int K)
 	*/
 }
 
+
+int FindOddInArray(vector<int>& A)
+{
+	if (A.size() <= 0) return A.at(0);
+	//quickSort(A, 0, A.size() - 1);
+	std::sort(A.begin(), A.end());
+
+	for (size_t i = 0; i < A.size() - 1; i += 2)
+	{
+		cout << endl;
+		if (i == A.size() - 1)
+		{
+			cout << A.at(i) << endl;
+			return A.at(i);
+		}
+
+		if (A.at(i) != A.at(i + 1))
+		{
+			cout << A.at(i) << endl;
+			return A.at(i);
+		}
+	}
+}
+
+//Lesson 3
+int JumpibgFrog(int X, int Y, int D) {
+	float result {0};
+	if (X >= Y) return 0;
+
+	float reste = (Y - X) % (D);
+	if (reste != 0)
+	{
+		return ((Y - X) / D) + 1;
+	}
+	else
+	{
+		return (Y - X) / D;
+
+	}
+}
+
+int MissingElement(vector<int>& A)
+{
+	if (A.size() == 0) return 1;
+
+	sort(A.begin(), A.end());
+
+	if (A.at(0) != 1) return 1;
+
+	for (size_t i = 0; i < A.size() -1 ; i ++)
+	{
+		if (A.at(i + 1) != A.at(i) + 1)
+		{
+			return A.at(i)+1;
+		}
+	}
+	if (A.size() == 1) return A.back() + 1;
+	return A.back() + 1;
+}
+
+int TapeEquilibrium(vector<int>& A)
+{
+
+}
+
 int main()
 {
+	vector<int> vals{ 1,2 };
+	int x = 10;
+	int y = 85;
+	int d = 30;
+
 	//std::cout << DetectGap(IntToBin(145));
-	vector<int> vals{ 9,3,9,3,9,7,9 };
 
 	//std::set<int> set(vals.begin(), vals.end());
-	// Sort et si après et avant pas pareil c'est solo
+
+
+	
+	
+
+	
 	
 }
