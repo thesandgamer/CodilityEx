@@ -237,6 +237,7 @@ int TapeEquilibrium(vector<int>& A)
 			kMax += A.at(k);
 
 		}*/
+
 		
 		jMax = accumulate(A.begin(), A.end()-i, 0);
 		kMax = accumulate(A.end() - i, A.end(), 0);
