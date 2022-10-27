@@ -15,69 +15,12 @@
 using std::vector;
 using namespace  std;
 
-int partition(vector<int>& arr, int start, int end)
-{
 
-	int pivot = arr[start];
-
-	int count = 0;
-	for (int i = start + 1; i <= end; i++) {
-		if (arr[i] <= pivot)
-			count++;
-	}
-
-	// Giving pivot element its correct position
-	int pivotIndex = start + count;
-	swap(arr[pivotIndex], arr[start]);
-
-	// Sorting left and right parts of the pivot element
-	int i = start, j = end;
-
-	while (i < pivotIndex && j > pivotIndex) {
-
-		while (arr[i] <= pivot) {
-			i++;
-		}
-
-		while (arr[j] > pivot) {
-			j--;
-		}
-
-		if (i < pivotIndex && j > pivotIndex) {
-			swap(arr[i++], arr[j--]);
-		}
-	}
-
-	return pivotIndex;
-}
-
-void quickSort(vector<int>& arr, int start, int end)
-{
-
-	// base case
-	if (start >= end)
-		return;
-
-	// partitioning the array
-	int p = partition(arr, start, end);
-
-	// Sorting the left part
-	quickSort(arr, start, p - 1);
-
-	// Sorting the right part
-	quickSort(arr, p + 1, end);
-}
-
-
-
-
-
+//Lesson 1 
 std::string IntToBin(int value)
 {
 	return std::bitset<32>(value).to_string();
 }
-
-//Lesson 1 
 
 int DetectGap(std::string binaryValue)
 {
@@ -120,9 +63,13 @@ int DetectGap(std::string binaryValue)
 return maxValue;
 }
 
+int BinaryGap(int N)
+{
+	return DetectGap(IntToBin(N));
+}
 //Lesson 2
 
-void CirclicRotation(vector<int>& A, int K)
+void CyclicRotation(vector<int>& A, int K)
 {
 	//On doit déplacer A K fois
 	//if (K == 0) return A;
@@ -152,7 +99,7 @@ void CirclicRotation(vector<int>& A, int K)
 }
 
 
-int FindOddInArray(vector<int>& A)
+int OddOccurencesInArray(vector<int>& A)
 {
 	if (A.size() <= 0) return A.at(0);
 	//quickSort(A, 0, A.size() - 1);
@@ -176,7 +123,7 @@ int FindOddInArray(vector<int>& A)
 }
 
 //Lesson 3
-int JumpibgFrog(int X, int Y, int D) {
+int FrogJmp(int X, int Y, int D) {
 	float result{ 0 };
 	if (X >= Y) return 0;
 
@@ -192,7 +139,7 @@ int JumpibgFrog(int X, int Y, int D) {
 	}
 }
 
-int MissingElement(vector<int>& A)
+int PermMissingElem(vector<int>& A)
 {
 	if (A.size() == 0) return 1;
 
@@ -216,7 +163,7 @@ int TapeEquilibrium(vector<int>& A)
 	//But trouver quel est laplus petite différence
 	int jMax = 0;
 	int kMax = 0;
-//	std::set<int> minValue;
+	//set<int> minValue;
 
 	int minval = numeric_limits<float>::infinity();
 
@@ -270,11 +217,5 @@ int main()
 	//std::cout << DetectGap(IntToBin(145));
 
 	//std::set<int> set(vals.begin(), vals.end());
-
-
-	
-	
-
-	
 	
 }
