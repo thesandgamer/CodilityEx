@@ -217,7 +217,7 @@ int main()
 	{
 		cout << numbers.at(i)<<"|";
 	}
-	cout << "-----" << endl << endl;
+	cout << "-----" << endl;
 	int numberOfRotation = 4;
 	cout << " Result: ";
 	CyclicRotation(numbers, numberOfRotation);
@@ -226,7 +226,7 @@ int main()
 	{
 		cout <<numbers.at(i) << "|";
 	}
-	cout << endl;
+	cout << endl<<endl;
 
 
 	//-------------------Ex OddOccurencesInArray -----------
@@ -243,7 +243,7 @@ int main()
 	int x = 10;
 	int y = 85;
 	int d = 30;
-	cout << "-----Frog Jump-----" << endl;
+	cout << "-----Frog Jump of: "<< "X: "<<x <<" Y:"<<y<<" D:"<<d<<"-----" << endl;
 	cout << " Result: " << FrogJmp(x,y,d) << endl;
 	cout << endl;
 
