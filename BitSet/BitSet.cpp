@@ -67,6 +67,7 @@ int BinaryGap(int N)
 {
 	return DetectGap(IntToBin(N));
 }
+
 //Lesson 2
 
 void CyclicRotation(vector<int>& A, int K)
@@ -98,25 +99,20 @@ void CyclicRotation(vector<int>& A, int K)
 	*/
 }
 
-
 int OddOccurencesInArray(vector<int>& A)
 {
 	if (A.size() <= 0) return A.at(0);
-	//quickSort(A, 0, A.size() - 1);
 	std::sort(A.begin(), A.end());
 
 	for (size_t i = 0; i < A.size() - 1; i += 2)
 	{
-		cout << endl;
 		if (i == A.size() - 1)
 		{
-			cout << A.at(i) << endl;
 			return A.at(i);
 		}
 
 		if (A.at(i) != A.at(i + 1))
 		{
-			cout << A.at(i) << endl;
 			return A.at(i);
 		}
 	}
@@ -165,7 +161,7 @@ int TapeEquilibrium(vector<int>& A)
 	int kMax = 0;
 	//set<int> minValue;
 
-	int minval = numeric_limits<float>::infinity();
+	int minval = 10000000000;//numeric_limits<float>::infinity();
 
 
 	for (size_t i = 1; i < A.size(); i++)
@@ -207,12 +203,71 @@ int TapeEquilibrium(vector<int>& A)
 
 int main()
 {
-	vector<int> vals{ 3,1,2,4,3 };
+
+	//-------------------Ex binaryGap -----------
+	int number = 1041;
+	cout << "-----Binary Gap of: " << number << "-----" << endl;
+	cout << " Result: " << BinaryGap(number) << endl;
+	cout << endl;
+
+	//-------------------Ex CyclicRotation -----------
+	vector<int> numbers = { 1,2,3,4 };
+	cout << "-----Ciclic Roation of: |";
+	for (size_t i = 0; i < numbers.size(); i++)
+	{
+		cout << numbers.at(i)<<"|";
+	}
+	cout << "-----" << endl << endl;
+	int numberOfRotation = 4;
+	cout << " Result: ";
+	CyclicRotation(numbers, numberOfRotation);
+
+	for (size_t i = 0; i < numbers.size(); i++)
+	{
+		cout <<numbers.at(i) << "|";
+	}
+	cout << endl;
+
+
+	//-------------------Ex OddOccurencesInArray -----------
+	vector<int> array = {9,3,9,3,9,7,9 };
+	cout << "-----Odd Occurences In Array of: |";
+	for (size_t i = 0; i < array.size(); i++)
+	{
+		cout << array.at(i) << "|";
+	} cout << "-----" << endl;
+	cout << " Result: " << OddOccurencesInArray(array) << endl << endl;
+
+
+	//-------------------Ex FrogJump -----------
 	int x = 10;
 	int y = 85;
 	int d = 30;
+	cout << "-----Frog Jump-----" << endl;
+	cout << " Result: " << FrogJmp(x,y,d) << endl;
+	cout << endl;
 
-	cout << endl << TapeEquilibrium(vals) << endl;
+
+	//-------------------Ex PermMissingElement -----------
+	vector<int> values = { 2,3,1,5 };
+	cout << "-----Perm Missing element of: |";
+	for (size_t i = 0; i < values.size(); i++)
+	{
+		cout << values.at(i) << "|";
+	} cout << "-----" << endl;
+	cout << " Result: " << PermMissingElem(values) << endl;
+	cout << endl;
+
+
+	//-------------------Ex TapeEquilibrium ----------- result at 69% can be upgraded by doing different
+	vector<int> vals{ 3,1,2,4,3 };
+	cout << "-----Tape Equilibrium of: |";
+	for (size_t i = 0; i < vals.size(); i++)
+	{
+		cout << vals.at(i) << "|";
+	} cout << "-----" << endl;
+
+	cout << " Result: " << TapeEquilibrium(vals) << endl;
 
 	//std::cout << DetectGap(IntToBin(145));
 
